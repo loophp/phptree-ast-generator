@@ -1,0 +1,46 @@
+{
+    "name": "loophp/phptree-ast-generator",
+    "type": "library",
+    "description": "Generates AST of a PHP script in DOT (Graphviz) or Image (PNG, JPG, SVG) formats.",
+    "keywords": [
+        "ast",
+        "tree",
+        "graph",
+        "abstract syntax tree"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pol Dellaiera",
+            "email": "pol.dellaiera@protonmail.com"
+        }
+    ],
+    "require": {
+        "php": ">= 7.1",
+        "loophp/phptree": "^2.6.1",
+        "nikic/php-parser": "^4.3.0",
+        "symfony/console": "^4 || ^5"
+    },
+    "require-dev": {
+        "drupol/php-conventions": "^1.6.14",
+        "friends-of-phpspec/phpspec-code-coverage": "^4.3.2",
+        "infection/infection": "^0.13.6 || ^0.15.3",
+        "microsoft/tolerant-php-parser": "^0.0.20",
+        "phpspec/phpspec": "^5.1.2 || ^6.1.1"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "loophp\\PhptreeAstGenerator\\": "src/"
+        }
+    },
+    "bin": [
+        "bin/ast"
+    ],
+    "scripts": {
+        "grumphp": "./vendor/bin/grumphp run",
+        "infection": "./vendor/bin/infection run"
+    }
+}
