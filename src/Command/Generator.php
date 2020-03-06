@@ -8,6 +8,7 @@ use InvalidArgumentException;
 use loophp\phptree\Exporter\Gv;
 use loophp\phptree\Exporter\Image;
 use loophp\phptree\Importer\MicrosoftTolerantPhpParser;
+use loophp\phptree\Importer\NikicPhpAst;
 use loophp\phptree\Importer\NikicPhpParser;
 use loophp\PhptreeAstGenerator\Exporter\FancyExporter;
 use loophp\PhptreeAstGenerator\Exporter\MicrosoftFancyExporter;
@@ -37,7 +38,8 @@ There are only 2 output formats that are supported:
 
 By default, the <info>dot</info> format is used. Use the <comment>-c</comment> option to change it.
 
-The generator supports 2 parsers:
+The generator supports 3 parsers:
+* <href=https://github.com/nikic/php-ast>nikic/php-ast</>
 * <href=https://github.com/nikic/php-parser>nikic/php-parser</>
 * <href=https://github.com/microsoft/tolerant-php-parser>microsoft/tolerant-php-parser</>
 
@@ -80,7 +82,7 @@ EOF;
             ->setDescription('Generate an Abstract Syntax Tree using nikic/php-parser parser.')
             ->setHelp($this->getHelp())
             ->addArgument('filepath', InputArgument::REQUIRED, 'Filepath to the PHP code.')
-            ->addOption('parser', 'p', InputOption::VALUE_OPTIONAL, 'The parser (nikic, microsoft)', 'nikic')
+            ->addOption('parser', 'p', InputOption::VALUE_OPTIONAL, 'The parser (ast, nikic, microsoft)', 'nikic')
             ->addOption('type', 't', InputOption::VALUE_OPTIONAL, 'The exporter type (dot, image)', 'dot')
             ->addOption('format', 'f', InputOption::VALUE_OPTIONAL, 'The export format (png, jpg, svg)', 'svg')
             ->addOption(
@@ -132,6 +134,12 @@ EOF;
             case 'microsoft':
                 $importer = new MicrosoftTolerantPhpParser();
                 $data = (new Parser())->parseSourceFile($fileContent);
+                $tree = $importer->import($data);
+
+                break;
+            case 'ast':
+                $importer = new NikicPhpAst();
+                $data = \ast\parse_code($fileContent, 50);
                 $tree = $importer->import($data);
 
                 break;
