@@ -54,7 +54,7 @@ To generate an image
 ./path/to/bin/ast generate -c -t image -f png -d graph.png src/Command/Generator.php
 ```
 
-The generator supports 2 PHP parsers:
+The generator supports 3 PHP parsers:
 * [nikic/php-ast](https://github.com/nikic/php-ast)
 * [nikic/php-parser](https://github.com/nikic/php-parser)
 * [microsoft/tolerant-php-parser](https://github.com/microsoft/tolerant-php-parser)
