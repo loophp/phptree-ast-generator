@@ -78,12 +78,18 @@ EOF;
     protected function configure(): void
     {
         $this
-            ->setName('generate-nikic')
-            ->setDescription('Generate an Abstract Syntax Tree using nikic/php-parser parser.')
+            ->setName('generate')
+            ->setDescription('Generate an Abstract Syntax Tree.')
             ->setHelp($this->getHelp())
             ->addArgument('filepath', InputArgument::REQUIRED, 'Filepath to the PHP code.')
-            ->addOption('parser', 'p', InputOption::VALUE_OPTIONAL, 'The parser (ast, nikic, microsoft)', 'nikic')
-            ->addOption('type', 't', InputOption::VALUE_OPTIONAL, 'The exporter type (dot, image)', 'dot')
+            ->addOption(
+                'parser',
+                'p',
+                InputOption::VALUE_OPTIONAL,
+                'The parser to use: ast, nikic or microsoft.',
+                'nikic'
+            )
+            ->addOption('type', 't', InputOption::VALUE_OPTIONAL, 'The exporter type: dot or image', 'dot')
             ->addOption('format', 'f', InputOption::VALUE_OPTIONAL, 'The export format (png, jpg, svg)', 'svg')
             ->addOption(
                 'destination',
@@ -92,7 +98,13 @@ EOF;
                 'The export destination (a filepath or inline)',
                 'inline'
             )
-            ->addOption('fancy', 'c', InputOption::VALUE_OPTIONAL, 'Use the fancy exporter ?', false);
+            ->addOption(
+                'fancy',
+                'c',
+                InputOption::VALUE_OPTIONAL,
+                'Use the fancy exporter ?',
+                false
+            );
     }
 
     /**
