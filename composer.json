@@ -24,7 +24,7 @@
     "require-dev": {
         "drupol/php-conventions": "^1.6.14",
         "friends-of-phpspec/phpspec-code-coverage": "^6.0.0",
-        "infection/infection": "^0.13.6 || ^0.15.3 || ^0.26.0",
+        "infection/infection": "^0.13.6 || ^0.15.3 || ^0.26.0 || ^0.29.0",
         "microsoft/tolerant-php-parser": "^0.1.0",
         "phpspec/phpspec": "^5.1.2 || ^6.1.1 || ^7.0.0"
     },
